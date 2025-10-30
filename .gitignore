@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment and config
+.env
+config.php
+
+# System / cache
+*.log
+*.tmp
