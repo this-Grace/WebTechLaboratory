@@ -62,7 +62,7 @@ class DatabaseHelper {
      * @param int $n Maximum number of posts to return (default: -1 for no limit)
      * @return array List of posts, each represented as an associative array containing
      */
-    public function getPosts($n = -1){
+    public function getPosts($n = -1) {
         $query = "SELECT titoloarticolo, anteprimaarticolo, dataarticolo,
                     imgarticolo, dataarticolo, nome FROM articolo,
                     autore WHERE autore=idautore ORDER BY
@@ -79,6 +79,43 @@ class DatabaseHelper {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Retrieves authors and their associated topics from the database.
+     *
+     * Executes a query joining the `categoria`, `articolo`, `autore`,
+     * and `articolo_ha_categoria` tables to fetch each author's username,
+     * full name, and a comma-separated list of article categories they have written about.
+     * Only active authors (attivo = 1) are included.
+     *
+     * @return array List of authors
+     */
+    public function getAuthors() {
+        $query = "SELECT username, nome, GROUP_CONCAT(DISTINCT 
+                    nomecategoria) as argomenti FROM categoria, 
+                    articolo, autore, articolo_ha_categoria WHERE 
+                    idarticolo=articolo AND categoria=idcategoria AND 
+                    autore=idautore AND attivo=1 GROUP BY username, nome";
+
+        $stmt = $this->db->prepare($query);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * Generates a clean, lowercase HTML-safe ID string from a given name.
+     *
+     * This helper removes all non-alphabetic characters and converts
+     * the string to lowercase, making it suitable for use as an HTML element ID.
+     *
+     * @param string $name The name to convert.
+     * @return string A sanitized lowercase ID string.
+     */
+    public function getIdFromName($name){
+        return preg_replace("/[^a-z]/", '', strtolower($name));
     }
 }
 ?>
