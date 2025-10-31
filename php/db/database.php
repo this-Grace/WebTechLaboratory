@@ -51,5 +51,34 @@ class DatabaseHelper {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    /**
+     * Retrieves posts from the database, ordered by date in descending order.
+     *
+     * This function executes a query that joins the `articolo` (article) and `autore` (author)
+     * tables, returning the article title, preview, date, image, and author name.
+     * You can specify a maximum number of posts to return.
+     *
+     * @param int $n Maximum number of posts to return (default: -1 for no limit)
+     * @return array List of posts, each represented as an associative array containing
+     */
+    public function getPosts($n = -1){
+        $query = "SELECT titoloarticolo, anteprimaarticolo, dataarticolo,
+                    imgarticolo, dataarticolo, nome FROM articolo,
+                    autore WHERE autore=idautore ORDER BY
+                    dataarticolo DESC";
+        if($n>0){
+            $query .= " LIMIT ?";
+        }
+
+        $stmt = $this->db->prepare($query);
+        if($n>0){
+            $stmt->bind_param("i", $n);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>

@@ -12,6 +12,10 @@ $templateParams["nome"] = "lista_articoli.php";
 $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 $templateParams["categorie"] = $dbh->getCategories();
 
+// Template Specific
+$templateParams["articoli"] = $dbh->getPosts(2);
+$templateParams["titolopagina"] = "Ultimi Articoli";
+
 // Load base template
 require_once("template/base.php");
 ?>
