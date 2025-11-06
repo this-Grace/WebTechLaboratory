@@ -4,7 +4,7 @@
  * Loads data from the database and passes it to the template.
  */
 
-require_once("bootstrap.php");
+require_once 'bootstrap.php';
 
 // Template parameters
 $templateParams["titolo"] = "Blog TW - Contact";
@@ -17,5 +17,5 @@ $templateParams["titolopagina"] = "Contatti";
 $templateParams["autori"] = $dbh->getAuthors();
 
 // Load base template
-require_once("template/base.php");
+require 'template/base.php';
 ?>
