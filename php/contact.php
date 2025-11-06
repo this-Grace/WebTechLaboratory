@@ -8,7 +8,7 @@ require_once 'bootstrap.php';
 
 // Template parameters
 $templateParams["titolo"] = "Blog TW - Contact";
-$templateParams["nome"] = "lista_contatti.php";
+$templateParams["nome"] = "contact_list.php";
 $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 $templateParams["categorie"] = $dbh->getCategories();
 

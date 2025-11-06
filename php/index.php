@@ -8,7 +8,7 @@ require_once("bootstrap.php");
 
 // Template parameters
 $templateParams["titolo"] = "Blog TW - Home";
-$templateParams["nome"] = "lista_articoli.php";
+$templateParams["nome"] = "articles_list.php";
 $templateParams["articolicasuali"] = $dbh->getRandomPosts(2);
 $templateParams["categorie"] = $dbh->getCategories();
 

@@ -11,7 +11,7 @@
     </header>
     <nav>
         <ul>
-            <li><a href="./index.php">Home</a></li><li><a href="./archivio.php">Archivio</a></li><li><a href="./contatti.php">Contatti</a></li><li><a href="./login.php">Login</a></li>
+            <li><a href="./index.php">Home</a></li><li><a href="./archive.php">Archivio</a></li><li><a href="./contact.php">Contatti</a></li><li><a href="./login.php">Login</a></li>
         </ul>
     </nav>
     <main>
