@@ -1,4 +1,4 @@
-<h2><?php echo $templateParams["titolopagina"]; ?></h2>
+<h2><?php echo $templateParams["titolo"]; ?></h2>
 
 <table>
     <tr>
